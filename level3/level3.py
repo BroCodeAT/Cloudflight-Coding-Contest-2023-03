@@ -42,9 +42,9 @@ def tournament(data: list) -> list:
     rounds = []
     for tourn in data[1:]:
         tourn = tourn.split(" ")
-        rocks = "R"*tourn[0][::-1]
-        papers = "P"*tourn[1][::-1]
-        scissors = "S"*tourn[2][::-1]
+        rocks = "R"*int(tourn[0][:-1])
+        papers = "P"*int(tourn[1][:-1])
+        scissors = "S"*int(tourn[2][:-1])
         if rnd := gen_round(rocks, papers, scissors):
             rounds.append(rnd)
     return rounds
@@ -79,16 +79,20 @@ def gen_round(rocks: str , papers: str, sicssors: str) -> str:
         start_pairs += "SS"
         sicssors = sicssors[2:]
 
+    return start_pairs
+
     
     
 
 
 
 if __name__ == '__main__':
-    """comp = tournament(load_file("level3/level3_example.in"))
+    comp = tournament(load_file("level3/level3_example.in"))
     print(comp)
+    for i in comp:
+        print(check_tournament_winners(i))
     write_to_file(comp, "level3/level3_example_our.out")
-    exit()"""
+    exit()
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level3/level3_{i}.in"))
         write_to_file(comp, f"level3/level3_{i}.out")
