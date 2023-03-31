@@ -15,6 +15,7 @@ def check_winner(styles: str) -> str:
 
 def tournament_round(fighters: str) -> str:
     pairs = []
+    left = ""
     while fighters:
         pairs.append(fighters[:2])
         fighters = fighters[2:]
@@ -27,9 +28,6 @@ def tournament_round(fighters: str) -> str:
 def check_tournament_winners(fighters: str) -> str:
     fighters_for_second = tournament_round(fighters)
     return tournament_round(fighters_for_second)
-
-
-
 
 
 def write_to_file(data: list, filename: str = "level1/level1_1.out") -> None:
@@ -47,6 +45,10 @@ def tournament(data: list) -> list:
 
 
 if __name__ == '__main__':
-    for i in range(1, 5):
+    """comp = tournament(load_file("level2/level2_example.in"))
+    print(comp)
+    write_to_file(comp, "level2/level2_example.out")
+    exit()"""
+    for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level2/level2_{i}.in"))
         write_to_file(comp, f"level2/level2_{i}.out")
