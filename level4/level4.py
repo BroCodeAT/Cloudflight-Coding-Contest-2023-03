@@ -1,4 +1,4 @@
-def load_file(filename: str = "level3/level3_1.in") -> list:
+def load_file(filename: str = "level4/level4_1.in") -> list:
     with open(filename, "r") as file:
         return [line.strip() for line in file.readlines()]
 
@@ -90,14 +90,14 @@ def gen_round(rocks: str, papers: str, sicssors: str) -> str:
 
 
 if __name__ == '__main__':
-    comp = tournament(load_file("level3/level3_example.in"))
+    comp = tournament(load_file("level4/level4_example.in"))
     print(comp)
     for i in comp:
         print(check_tournament_winners(i))
-    write_to_file(comp, "level3/level3_example_our.out")
-
+    write_to_file(comp, "level4/level4_example_our.out")
+    exit()
     for i in range(1, 5 + 1):
-        comp = tournament(load_file(f"level3/level3_{i}.in"))
+        comp = tournament(load_file(f"level4/level4_{i}.in"))
         for _ in comp:
             print(check_tournament_winners(_))
-        write_to_file(comp, f"level3/level3_{i}.out")
+        write_to_file(comp, f"level4/level4_{i}.out")
