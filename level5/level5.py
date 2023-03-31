@@ -49,7 +49,9 @@ def tournament(data: list) -> list:
         rocks = "R" * int(tourn[0][:-1])
         papers = "P" * int(tourn[1][:-1])
         scissors = "S" * int(tourn[2][:-1])
-        if rnd := gen_round(rocks, papers, scissors):
+        spock = "Y" * int(tourn[3][:-1])
+        lizard = "L" * int(tourn[4][:-1])
+        if rnd := gen_round(rocks, papers, scissors, spock, lizard):
             rounds.append(rnd)
     return rounds
 
