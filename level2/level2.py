@@ -22,6 +22,7 @@ def tournament_round(fighters: str) -> str:
     for pair in pairs:
         round_winner = check_winner(pair)
         left = left + round_winner
+    return left
 
 def check_tournament_winners(fighters: str, m: int) -> str:
     fighters_for_second = tournament_round(fighters)
