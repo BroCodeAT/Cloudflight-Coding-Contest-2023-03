@@ -28,8 +28,9 @@ def tournament_round(fighters: str) -> str:
 
 
 def check_tournament_winners(fighters: str) -> str:
-    fighters_for_second = tournament_round(fighters)
-    return tournament_round(fighters_for_second)
+    while len(fighters) > 1:
+        fighters = tournament_round(fighters)
+    return fighters
 
 
 def write_to_file(data: list, filename: str = "level3/level3_1.out") -> None:
