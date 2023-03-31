@@ -57,7 +57,7 @@ def fill_rocks(rocks, papers, players, div = 4, start_pairs = ""):
     if rocks:
         block = int(players/div)
         rest_rocks = len(rocks)
-        if rest_rocks >= block-1:
+        if rest_rocks >= block-1 and papers:
             start_pairs += "P" + "R"*(block - 1)
             rocks = rocks[block - 1:]
             papers = papers[1:]
