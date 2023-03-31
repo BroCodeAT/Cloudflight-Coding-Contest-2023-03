@@ -1,3 +1,5 @@
+import math
+
 def load_file(filename: str = "level4/level4_1.in") -> list:
     with open(filename, "r") as file:
         return [line.strip() for line in file.readlines()]
@@ -53,14 +55,21 @@ def tournament(data: list) -> list:
 
 def gen_round(rocks: str, papers: str, sicssors: str) -> str:
     """Generate a round of the tournament"""
-
+    players = len(rocks) + len(papers) + len(sicssors)
+    rounds = int(math.log2(players))
+    
     start_pairs = ""
     while rocks and papers:
         start_pairs += "RP"
         rocks = rocks[1:]
         papers = papers[1:]
 
-        if len(rocks) >= 2:
+        
+        if len(rocks) >= 2**(rounds-2) - 1:
+            start_pairs += "R"*( 2**(rounds-2) - 1)
+            rocks = rocks[6:]
+                
+        elif len(rocks) >= 2:
             start_pairs += "RR"
             rocks = rocks[2:]
 
@@ -95,9 +104,10 @@ if __name__ == '__main__':
     for i in comp:
         print(check_tournament_winners(i))
     write_to_file(comp, "level4/level4_example_our.out")
-    exit()
+    
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level4/level4_{i}.in"))
+        write_to_file(comp, f"level4/level4_{i}.out")
         for _ in comp:
             print(check_tournament_winners(_))
-        write_to_file(comp, f"level4/level4_{i}.out")
+        
