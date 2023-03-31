@@ -98,4 +98,6 @@ if __name__ == '__main__':
 
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level3/level3_{i}.in"))
+        for i in comp:
+            print(check_tournament_winners(i))
         write_to_file(comp, f"level3/level3_{i}.out")
