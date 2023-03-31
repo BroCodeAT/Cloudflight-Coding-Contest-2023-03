@@ -3,6 +3,12 @@ def load_file(filename: str = "level1/level1_1.in") -> list:
         return [line.strip() for line in file.readlines()]
 
 
+def write_to_file(data: list, filename: str = "level1/level1_1.out") -> None:
+    with open(filename, "w") as file:
+        for line in data:
+            file.write(line + "\n")
+
+
 def check_winner(styles: str) -> str:
     if "R" in styles and "P" in styles:
         return "P"
@@ -14,12 +20,6 @@ def check_winner(styles: str) -> str:
         return styles[0]
 
 
-def write_to_file(winners: list) -> None:
-    with open("level1/level1_1.out", "w") as file:
-        for winner in winners:
-            file.write(winner + "\n")
-
-
 def competition(data: list) -> list:
     winner = []
     for fight in data[1:]:
@@ -28,6 +28,7 @@ def competition(data: list) -> list:
     return winner
 
 
-comp = competition(load_file())
-
-write_to_file(comp)
+if __name__ == '__main__':
+    for i in range(1, 6):
+        comp = competition(load_file(f"level1/level1_{i}.in"))
+        write_to_file(comp, f"level1/level1_{i}.out")
