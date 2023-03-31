@@ -52,31 +52,33 @@ def tournament(data: list) -> list:
             rounds.append(rnd)
     return rounds
 
+def fill_rocks(rocks, papers, players):
+    start_pairs = ""
+    div = 4
+    while rocks:
+        block = int(players/div)
+        print(players)
+        print(div)
+        rest_rocks = len(rocks)
+        if rest_rocks >= block-1:
+            start_pairs += "P" + "R"*(block - 1)
+            rocks = rocks[block - 1:]
+            papers = papers[1:]
+    
+        if rest_rocks >= block:
+            start_pairs += "R"*block
+            rocks = rocks[block:]
+
+        div *= 2
+    return start_pairs, papers
 
 def gen_round(rocks: str, papers: str, sicssors: str) -> str:
     """Generate a round of the tournament"""
     players = len(rocks) + len(papers) + len(sicssors)
     rounds = int(math.log2(players))
     
-    start_pairs = ""
-    while rocks and papers:
-        start_pairs += "RP"
-        rocks = rocks[1:]
-        papers = papers[1:]
+    start_pairs, papers = fill_rocks(rocks, papers, players)
 
-        
-        if len(rocks) >= 2**(rounds-2) - 1:
-            start_pairs += "R"*( 2**(rounds-2) - 1)
-            rocks = rocks[6:]
-                
-        elif len(rocks) >= 2:
-            start_pairs += "RR"
-            rocks = rocks[2:]
-
-    if rocks:
-        start_pairs += "RS"
-        rocks = rocks[1:]
-        sicssors = sicssors[1:]
 
     while papers and sicssors:
         start_pairs += "PS"
@@ -101,9 +103,10 @@ def gen_round(rocks: str, papers: str, sicssors: str) -> str:
 if __name__ == '__main__':
     comp = tournament(load_file("level4/level4_example.in"))
     print(comp)
+    write_to_file(comp, "level4/level4_example_our.out")
     for i in comp:
         print(check_tournament_winners(i))
-    write_to_file(comp, "level4/level4_example_our.out")
+    
     
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level4/level4_{i}.in"))
