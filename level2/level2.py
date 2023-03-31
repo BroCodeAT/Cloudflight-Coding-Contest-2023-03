@@ -8,7 +8,14 @@ def write_to_file(data: list, filename: str = "level1/level1_1.out") -> None:
     with open(filename, "w") as file:
         for line in data:
             file.write(line + "\n")
-    
+
+
+def tournament(data: list) -> list:
+    winner = []
+    for tourn in data[1:]:
+        if win := check_winner(tourn):
+            winner.append(win)
+    return winner
 
 
 if __name__ == '__main__':
