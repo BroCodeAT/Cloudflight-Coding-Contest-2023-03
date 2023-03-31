@@ -55,6 +55,7 @@ def tournament(data: list) -> list:
 
 def gen_round(rocks: str , papers: str, sicssors: str) -> str:
     """Generate a round of the tournament"""
+
     start_pairs = ""
     while rocks and papers:
         start_pairs += "RP"
@@ -64,6 +65,12 @@ def gen_round(rocks: str , papers: str, sicssors: str) -> str:
         if len(rocks) >= 2:
             start_pairs += "RR"
             rocks = rocks[2:]
+
+    if rocks:
+        start_pairs += "RS"
+        rocks = rocks[1:]
+        sicssors = sicssors[1:]
+
 
     while papers and sicssors:
         start_pairs += "PS"
@@ -98,6 +105,6 @@ if __name__ == '__main__':
 
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level3/level3_{i}.in"))
-        for i in comp:
-            print(check_tournament_winners(i))
+        for _ in comp:
+            print(check_tournament_winners(_))
         write_to_file(comp, f"level3/level3_{i}.out")
