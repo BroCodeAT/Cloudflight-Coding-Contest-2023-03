@@ -1,4 +1,4 @@
-def load_file(filename: str = "level1/level1_example.in") -> list:
+def load_file(filename: str = "level1/level1_1.in") -> list:
     with open(filename, "r") as file:
         return [line.strip() for line in file.readlines()]
 
@@ -15,7 +15,7 @@ def check_winner(styles: str) -> str:
 
 
 def write_to_file(winners: list) -> None:
-    with open("level1_1.out", "w") as file:
+    with open("level1/level1_1.out", "w") as file:
         for winner in winners:
             file.write(winner + "\n")
 
