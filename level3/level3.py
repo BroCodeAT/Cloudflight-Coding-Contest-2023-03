@@ -39,11 +39,15 @@ def write_to_file(data: list, filename: str = "level3/level3_1.out") -> None:
 
 
 def tournament(data: list) -> list:
-    winner = []
+    rounds = []
     for tourn in data[1:]:
-        if win := check_tournament_winners(tourn):
-            winner.append(win)
-    return winner
+        tourn = tourn.split(" ")
+        rocks = "R"*tourn[0][::-1]
+        papers = "P"*tourn[1][::-1]
+        scissors = "S"*tourn[2][::-1]
+        if rnd := gen_round(rocks, papers, scissors):
+            rounds.append(rnd)
+    return rounds
 
 
 if __name__ == '__main__':
