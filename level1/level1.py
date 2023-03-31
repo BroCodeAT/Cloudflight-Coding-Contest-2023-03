@@ -13,3 +13,6 @@ def check_winner(styles: str) -> str:
     elif styles[0] == styles[1]:
         return styles[0]
     
+def write_to_file(winners: list) -> None:
+    with open("level1.out", "w") as file:
+        file.writelines(winners)
