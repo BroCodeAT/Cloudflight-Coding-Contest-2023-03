@@ -90,12 +90,13 @@ def gen_round(rocks: str , papers: str, sicssors: str) -> str:
 
 
 if __name__ == '__main__':
-    comp = tournament(load_file("level3/level3_example.in"))
-    print(comp)
+    """comp = tournament(load_file("level3/level3_example.in"))
     for i in comp:
         print(check_tournament_winners(i))
     write_to_file(comp, "level3/level3_example_our.out")
-    exit()
+    exit()"""
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level3/level3_{i}.in"))
+        for i in comp:
+            print(check_tournament_winners(i))
         write_to_file(comp, f"level3/level3_{i}.out")
