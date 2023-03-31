@@ -67,15 +67,15 @@ def fill_rocks(rocks, papers, players, div = 4, start_pairs = ""):
             start_pairs += "R"*block
             rocks = rocks[block:]
 
-        start_pairs, papers = fill_rocks(rocks, papers, players, div*2, start_pairs)
-    return start_pairs, papers
+        start_pairs, papers, rocks = fill_rocks(rocks, papers, players, div*2, start_pairs)
+    return start_pairs, papers, rocks
 
 
 def gen_round(rocks: str, papers: str, scissors: str) -> str:
     """Generate a round of the tournament"""
     players = len(rocks) + len(papers) + len(scissors)
     
-    start_pairs, papers = fill_rocks(rocks, papers, players)
+    start_pairs, papers, rocks = fill_rocks(rocks, papers, players)
     print("length", len(start_pairs) + len(papers) + len(scissors))
 
 
@@ -100,10 +100,11 @@ def gen_round(rocks: str, papers: str, scissors: str) -> str:
 
 
 if __name__ == '__main__':
+    """"
     comp = tournament(load_file("level4/level4_example.in"))
     write_to_file(comp, "level4/level4_example_our.out")
     for i in comp:
-        print(check_tournament_winners(i))
+        print(check_tournament_winners(i))"""
     
     for i in range(1, 5 + 1):
         comp = tournament(load_file(f"level4/level4_{i}.in"))
