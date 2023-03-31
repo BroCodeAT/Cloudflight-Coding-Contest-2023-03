@@ -1,4 +1,3 @@
-
 def load_file(filename: str = "level1/level1_example.in") -> list:
     with open(filename, "r") as file:
         return [line.strip() for line in file.readlines()]
@@ -16,8 +15,10 @@ def check_winner(styles: str) -> str:
 
 
 def write_to_file(winners: list) -> None:
-    with open("level1.out", "w") as file:
-        file.writelines(winners)
+    with open("level1_1.out", "w") as file:
+        for winner in winners:
+            file.write(winner + "\n")
+
 
 def competition(data: list) -> list:
     winner = []
@@ -26,5 +27,7 @@ def competition(data: list) -> list:
             winner.append(win)
     return winner
 
-print(competition(load_file()))
 
+comp = competition(load_file())
+
+write_to_file(comp)
