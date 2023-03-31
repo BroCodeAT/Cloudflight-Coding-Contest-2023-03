@@ -24,7 +24,7 @@ def tournament_round(fighters: str) -> str:
         left = left + round_winner
     return left
 
-def check_tournament_winners(fighters: str, m: int) -> str:
+def check_tournament_winners(fighters: str) -> str:
     fighters_for_second = tournament_round(fighters)
     return tournament_round(fighters_for_second)
 
