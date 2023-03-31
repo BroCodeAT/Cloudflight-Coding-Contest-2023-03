@@ -72,18 +72,17 @@ def fill_rocks(rocks, papers, players):
         div *= 2
     return start_pairs, papers
 
-def gen_round(rocks: str, papers: str, sicssors: str) -> str:
+def gen_round(rocks: str, papers: str, scissors: str) -> str:
     """Generate a round of the tournament"""
-    players = len(rocks) + len(papers) + len(sicssors)
-    rounds = int(math.log2(players))
+    players = len(rocks) + len(papers) + len(scissors)
     
     start_pairs, papers = fill_rocks(rocks, papers, players)
 
 
-    while papers and sicssors:
+    while papers and scissors:
         start_pairs += "PS"
         papers = papers[1:]
-        sicssors = sicssors[1:]
+        scissors = scissors[1:]
 
         if len(papers) >= 2:
             start_pairs += "PP"
@@ -93,9 +92,9 @@ def gen_round(rocks: str, papers: str, sicssors: str) -> str:
         start_pairs += "P"
         papers = papers[1:]
 
-    while sicssors:
+    while scissors:
         start_pairs += "S"
-        sicssors = sicssors[1:]
+        scissors = scissors[1:]
 
     return start_pairs
 
